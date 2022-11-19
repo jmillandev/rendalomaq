@@ -2,7 +2,6 @@ import pytest
 from django.urls import reverse
 from model_bakery.recipe import Recipe
 from rest_framework import status
-from main import services
 from .models import Product
 from .filters import ProductFilter
 
@@ -93,5 +92,3 @@ def test_product_create_view(client):
 
     assert response.json() == { "message": "success" }
     assert Product.objects.count() == 1 
-
-# TODO postulante: test en algo que use todo
