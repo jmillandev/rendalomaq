@@ -69,7 +69,7 @@ def test_product_list_view_filter_by_category(client):
     prod2 = generic_product.make(price=20, category=cat1)
     generic_product.make(price=30, category=cat2)
     path = reverse('products-list')
-    response = client.get(path, {'category_id': cat1.id})
+    response = client.get(path, {'category_id': cat1.id, 'name': 24})
 
     assert response.status_code == status.HTTP_200_OK
     assert list(map(lambda x: x["id"], response.json())) == [prod1.id, prod2.id]
@@ -92,3 +92,15 @@ def test_product_create_view(client):
 
     assert response.json() == { "message": "success" }
     assert Product.objects.count() == 1 
+
+@pytest.mark.django_db
+def test_average_price_view(client):
+    generic_product.make(price=10)
+    generic_product.make(price=20)
+    generic_product.make(price=30)
+    path = reverse('products-price-avg')
+    response = client.get(path)
+
+    assert response.status_code == status.HTTP_200_OK, response.data
+
+    assert response.json() == { "price_avg": 20.0 }
