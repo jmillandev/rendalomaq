@@ -4,8 +4,8 @@ from rest_framework.mixins import ListModelMixin
 from main.models import Product
 from main.serializers import ProductSerializer
 
-class ProductAPIView(GenericViewSet, ListModelMixin):
-    queryset = Product
+class ProductViewSet(GenericViewSet, ListModelMixin):
+    queryset = Product.objects
     serializer_class = ProductSerializer
 
     # TODO List and filter products
