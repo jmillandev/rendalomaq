@@ -10,6 +10,7 @@ class CategorySerializer(ModelSerializer):
 
 
 class ProductSerializer(ModelSerializer):
+    # TODO: Implement JSON:API
     category = CategorySerializer(read_only=True)
     category_id = IntegerField(write_only=True)
 

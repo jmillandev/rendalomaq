@@ -1,22 +1,26 @@
+from rest_framework.decorators import action
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.request import Request
 
 from main.models import Product
 from main.serializers import ProductSerializer
+from .filters import ProductFilter
+from rendalo.mixins import ListFilterModelMixin
 
-class ProductViewSet(GenericViewSet, ListModelMixin):
+
+class ProductViewSet(ListFilterModelMixin, GenericViewSet):
     queryset = Product.objects
     serializer_class = ProductSerializer
-    # TODO List and filter products
+    filter_class = ProductFilter
 
-    def create(self, request):
+    def create(self, request: Request) -> Response:
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({"message": "success"}, status=status.HTTP_201_CREATED)
 
-    # TODO: Create Endpoint
-    # def prices_avg(self, request, *args, **kwargs):
-    #     pass
+    @action(detail=False, methods=['post'])
+    def prices_avg(self, _: Request) -> Response:
+        return Response({"price_avg": self.queryset.get_price_avg()}, status=status.HTTP_200_OK)
