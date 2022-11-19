@@ -3,6 +3,7 @@ from django.urls import reverse
 from model_bakery.recipe import Recipe
 from rest_framework import status
 from main import services
+from .models import Product
 
 generic_product = Recipe(
     "main.Product",
@@ -27,13 +28,13 @@ def test_get_products_filtered_by_category():
     assert result == [prod1, prod2]
 
 
-@pytest.mark.skip
 @pytest.mark.django_db
 def test_get_average_product_price():
     generic_product.make(price=10)
     generic_product.make(price=20)
     generic_product.make(price=30)
-    assert services.get_average_product_price() == 20.0
+    # I thinks that is better use services to business logic. If you need do read operation in the DB, use a 'manager'
+    assert Product.objects.get_price_avg() == 20.0
 
 
 @pytest.mark.django_db
@@ -76,5 +77,6 @@ def test_product_create_view(client):
     assert response.status_code == status.HTTP_201_CREATED, response.data
 
     assert response.json() == { "message": "success" }
+    assert Product.objects.count() == 1 
 
 # TODO postulante: test en algo que use todo
