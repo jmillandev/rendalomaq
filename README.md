@@ -11,7 +11,7 @@ python -m http.server 8080
 ```
 
 ## Run Server:
-docker compose up
+`docker compose up`
 
 ## See API documentation
 1. Run server
