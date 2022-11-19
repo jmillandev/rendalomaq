@@ -5,3 +5,4 @@ pytest-django==4.5.2
 model_bakery==1.9.0
 djangorestframework==3.14.0
 coverage===6.5.0
+drf_yasg==1.21.4

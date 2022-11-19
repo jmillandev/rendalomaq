@@ -23,4 +23,5 @@ class ProductViewSet(ListFilterModelMixin, GenericViewSet):
 
     @action(detail=False, methods=['get'], url_name='price-avg')
     def price_avg(self, _: Request) -> Response:
+        # TODO: Add Custom response in OpenAPI
         return Response({"price_avg": self.queryset.get_price_avg()}, status=status.HTTP_200_OK)
