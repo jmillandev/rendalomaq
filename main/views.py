@@ -1,13 +1,21 @@
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import ListModelMixin
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from main.models import Product
+from main.serializers import ProductSerializer
 
+class ProductAPIView(GenericViewSet, ListModelMixin):
+    queryset = Product
+    serializer_class = ProductSerializer
 
-class ProductAPIView(APIView):
-    def get(self, request):
-        # TODO
-        return Response([])
+    # TODO List and filter products
+    # def get(self, request, *args, **kwargs):
+    #     return Response([])
 
-    def post(self):
-        # TODO
-        pass
+    # TODO Create Products
+    # def post(self, request, *args, **kwargs):
+    #     pass
+
+    # TODO: Create Endpoint
+    # def prices_avg(self, request, *args, **kwargs):
+    #     pass
