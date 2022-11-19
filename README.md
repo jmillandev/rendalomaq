@@ -11,8 +11,15 @@ python -m http.server 8080
 ```
 
 ## Run Server:
-`docker compose up`
+`docker compose build; docker compose up`
 
 ## See API documentation
 1. Run server
 2. Go to http://127.0.0.1:8080/redoc
+
+## TODO
+[] Add Linter
+
+[] Create a docker-compose for each enviroment(local, prod, etc)
+
+[] Implement JSON:API
