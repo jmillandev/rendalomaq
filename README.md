@@ -17,11 +17,15 @@ python -m http.server 8080
 1. Run server
 2. Go to http://127.0.0.1:8080/redoc
 
-## TODO
-[] Change apps structure: Move main to apps/products
+## TODOs
+[] TODO: Change apps structure: Move main to apps/products
 
-[] Add Linter
+[] TODO: Add Linter
 
-[] Create a docker-compose for each enviroment(local, prod, etc)
+[] TODO: Create a docker-compose for each enviroment(local, prod, etc)
 
-[] Implement JSON:API
+[] TODO: Implement JSON:API
+
+[] TODO: Add creator component instead use serializer.save()
+
+[] TODO: Use DRF serializers as APIs contracts
