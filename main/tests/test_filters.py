@@ -2,7 +2,7 @@ import pytest
 
 from main.filters import ProductFilter
 
-from .recipes import generic_category, generic_product
+from .factories import generic_category, generic_product
 
 @pytest.mark.django_db
 def test_get_products_filtered_by_category():

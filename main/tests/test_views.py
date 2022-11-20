@@ -4,7 +4,7 @@ from rest_framework import status
 
 from main.models import Product
 
-from .recipes import generic_product, generic_category
+from .factories import generic_product, generic_category
 
 
 @pytest.mark.django_db

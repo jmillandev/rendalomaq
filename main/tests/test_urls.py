@@ -2,7 +2,7 @@ from django.urls import reverse, resolve
 from django.test import TestCase
 
 
-class AffiliateUrlTests(TestCase):
+class ProductUrlTests(TestCase):
 
     def test_list(self):
         view_name = 'products-list'

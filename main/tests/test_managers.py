@@ -2,7 +2,7 @@ import pytest
 
 from main.models import Product
 
-from .recipes import generic_product
+from .factories import generic_product
 
 @pytest.mark.django_db
 def test_get_average_product_price():
