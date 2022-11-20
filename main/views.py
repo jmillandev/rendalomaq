@@ -21,7 +21,7 @@ class ProductViewSet(ListFilterModelMixin, GenericViewSet):
         serializer.save()
         return Response({"message": "success"}, status=status.HTTP_201_CREATED)
 
-    @action(detail=False, methods=['get'], url_name='price-avg')
+    @action(detail=False, methods=['get'], url_name='price-avg', url_path='price-avg')
     def price_avg(self, _: Request) -> Response:
         # TODO: Add Custom response in OpenAPI
         return Response({"price_avg": self.queryset.get_price_avg()}, status=status.HTTP_200_OK)
