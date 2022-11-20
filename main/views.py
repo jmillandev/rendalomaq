@@ -11,7 +11,8 @@ from rendalo.mixins import ListFilterModelMixin
 
 
 class ProductViewSet(ListFilterModelMixin, GenericViewSet):
-    queryset = Product.objects
+    # TODO: Remove select_related with apply JSON:API
+    queryset = Product.objects.select_related('category')
     serializer_class = ProductSerializer
     filter_class = ProductFilter
 
@@ -24,4 +25,4 @@ class ProductViewSet(ListFilterModelMixin, GenericViewSet):
     @action(detail=False, methods=['get'], url_name='price-avg', url_path='price-avg')
     def price_avg(self, _: Request) -> Response:
         # TODO: Add Custom response in OpenAPI
-        return Response({"price_avg": self.queryset.get_price_avg()}, status=status.HTTP_200_OK)
+        return Response({"price_avg": Product.objects.get_price_avg()}, status=status.HTTP_200_OK)
